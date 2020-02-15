@@ -1,0 +1,17 @@
+$background-color: #faf8f5;;
+
+.inp input {
+    border: none;
+    border-bottom: 1px solid black;
+    padding-left:  10px;
+    background-color: $background-color ;
+}
+.inp select{
+    background-color: #b5b1ac;
+}
+.prefix {
+    margin-right: -10px;
+    position: absolute;
+    text-decoration: none;
+  }
+  
