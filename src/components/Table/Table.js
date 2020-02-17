@@ -1,6 +1,8 @@
 import React, { useReducer, useCallback } from 'react';
 import classes from './Table.module.scss';
 import Row from './Row/Row';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const Statereducer = (currentState,action)=>{
     switch(action.type){
@@ -24,7 +26,8 @@ const Statereducer = (currentState,action)=>{
       const ab= currentState.findIndex((el)=>{
         return el.rowid===action.index
       });    
-      abb[ab].selected= action.selected; 
+      abb[ab].item= action.item;
+      abb[ab].selected= true;  
       return [...abb] ;
       }
       default:
@@ -52,7 +55,8 @@ const addRowHandler = useCallback(()=>{
     setState({type:'ADD',
 new: {
     rowid: new Date(),
-    selected: ""
+    item: '',
+    selected: false
 }})
     },[])
 
@@ -60,7 +64,8 @@ const selectHandler =(event,index) => {
 const item = event.target.value
 setState({type:"SELECT",
 index: index,
-selected: item})
+item: item
+ })
 }
 
 const removeHandler =(index) => {
@@ -72,6 +77,7 @@ setState({
 row = State.map((el,i)=>{
         return (<Row key={i} index={el.rowid} itemlist={items} 
             rowitems={rows}
+            item={el.item}
             selected={el.selected}
             selectHandler={selectHandler}
             removeHandler={removeHandler}
@@ -80,9 +86,9 @@ row = State.map((el,i)=>{
 
 return (
         <div className={classes.Table}>
+            <div className={classes.tbl}>
             <table>
             <thead>
-
                 <tr>
                     {head}
                 </tr>
@@ -90,13 +96,15 @@ return (
                 <tbody>
                 {row}
                 </tbody>
-                <tfoot>
-                <tr>
-                    <td colSpan= '3'>
-                    <button onClick={addRowHandler} >Add</button></td>
-                </tr>
-                </tfoot>
             </table>
+            </div>
+            <div className={classes.btn}>
+            <button onClick={addRowHandler} ><FontAwesomeIcon icon={faPlus}  className={classes.plus}/>
+            <span className={classes.add}>Add</span></button>
+            </div>
+            <div>
+            
+          </div>
         </div>
     );
 }

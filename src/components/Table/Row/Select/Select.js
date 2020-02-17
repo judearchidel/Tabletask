@@ -8,12 +8,13 @@ const Select = (props) =>{
     
     })
 
-    return(
-        <div className={classes.Select}><select value={props.selected} onChange={(event)=>props.selectHandler(event,props.index)}>
-        <option  defaultValue="Nothing"> -- select an option -- </option>
+    return(<td className={classes.last}>
+        <div className={classes.Select}><select value={props.item} onChange={(event)=>props.selectHandler(event,props.index)}>
+        <option  defaultValue="Nothing">Select an option</option>
         {ren}
         </select>
-        </div>);
+        </div>
+        </td>);
 }
 
 export default Select;

@@ -6,7 +6,7 @@ function App() {
 
   const columnlist= [
     {
-      name: 'item',
+      name: 'Item',
       inputType: 'select'
     },
     {

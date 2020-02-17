@@ -2,36 +2,46 @@ $primary-background-color: #cfcfcf;
 $font: 'Open Sans', sans-serif;
 $text-color: #a3853c7b;
 
+
 .Table table{
-    width: 100%;
+    width: 90%;
+    border: none;
     margin: 10px;
-    border: 0.5px solid grey;
-    background-color:$primary-background-color;
-    font-family: $font;
+    text-align: left;
+    border-spacing: 0 5px;
+    border-collapse: separate;
+    border-style: none;
 }
-.Table thead {
-    margin: auto;
-    text-align: center;
-    color: $text-color;
+.Table tr{
+    height: 30px;
 }
+.Table .plus{
+    color : violet;
+    padding: 2px;
+    border: 1px solid violet;
+    border-radius: 50%;
+}
+
+.Table .tbl{
+    min-height: 200px;
+}
+.add{
+    padding: 2px;
+    font-size: 16px;
+}
+.Table .btn{
+    padding: 5px;
+    width: 90%;
+    text-align: left;
+    margin: 20px;
+    border-top: 0.5px solid black ;
+    border-bottom: 0.5px solid black;
+}
+.Table .btn button{
+    background-color: white;
+    border: none;
+}
+
 
 
    
-
-.Table tbody tr:hover{
- background-color: #9c9c9c;
-}
-
-.Table tfoot {
-    text-align: left;
-}
-.Table tfoot td {
-    text-align: left;
-    padding: 20px;
-}
-.Table button{
-    border: 2px solid #5e5e5e;
-    background-color: $primary-background-color;
-    padding: 5px;
-    border-radius: 15%;
-}
