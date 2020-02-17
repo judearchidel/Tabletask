@@ -1,7 +1,4 @@
-$primary-background-color: #cfcfcf;
-$font: 'Open Sans', sans-serif;
-$text-color: #a3853c7b;
-
+$icon-color: violet;
 
 .Table table{
     width: 90%;
@@ -15,19 +12,23 @@ $text-color: #a3853c7b;
 .Table tr{
     height: 30px;
 }
+.Table thead th{
+    font-weight: normal;
+}
 .Table .plus{
-    color : violet;
+    color : $icon-color;
     padding: 2px;
-    border: 1px solid violet;
+    border: 1px solid $icon-color;
     border-radius: 50%;
 }
 
 .Table .tbl{
     min-height: 200px;
 }
-.add{
+.Table .add{
+    color: $icon-color;
     padding: 2px;
-    font-size: 16px;
+    font-size: 14px;
 }
 .Table .btn{
     padding: 5px;
@@ -40,6 +41,9 @@ $text-color: #a3853c7b;
 .Table .btn button{
     background-color: white;
     border: none;
+}
+.Table .btn button:focus{
+    outline: none;
 }
 
 

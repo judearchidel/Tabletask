@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Input.module.scss';
 
 
 const Input = (props) =>{
 let ren= null;
-
+let  myref= React.createRef();
 if(props.inputType === "currency"){
     if(props.index===1 && props.selected){ 
         ren=<div><span className={classes.prefix}>$</span>
-   <input autoFocus={true} placeholder="0"></input></div>
+   <input ref={myref} placeholder="0"></input></div>
     }else{
     ren =<div><span className={classes.prefix} >$</span>
    <input placeholder="0"></input></div>
@@ -18,6 +18,13 @@ if(props.inputType === "currency"){
   ren = <input placeholder = "text"></input>
 }
 }
+useEffect(()=>{
+    if(props.index===1 && props.selected){
+        myref.current.focus();
+    }
+
+})
+
     return(<div className={classes.inp}>
         {ren}
        </div> );

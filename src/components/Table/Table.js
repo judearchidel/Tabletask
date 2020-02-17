@@ -27,7 +27,7 @@ const Statereducer = (currentState,action)=>{
         return el.rowid===action.index
       });    
       abb[ab].item= action.item;
-      abb[ab].selected= true;  
+      abb[ab].selected= action.selected;  
       return [...abb] ;
       }
       default:
@@ -61,10 +61,16 @@ new: {
     },[])
 
 const selectHandler =(event,index) => {
-const item = event.target.value
+const item = event.target.value;
+console.log(item)
+let selected = false;
+if(item !== 'Select an option'){
+    selected=true;
+}
 setState({type:"SELECT",
 index: index,
-item: item
+item: item,
+selected: selected
  })
 }
 
@@ -100,7 +106,7 @@ return (
             </div>
             <div className={classes.btn}>
             <button onClick={addRowHandler} ><FontAwesomeIcon icon={faPlus}  className={classes.plus}/>
-            <span className={classes.add}>Add</span></button>
+            <span className={classes.add}> Add item</span></button>
             </div>
             <div>
             

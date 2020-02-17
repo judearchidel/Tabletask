@@ -1,14 +1,18 @@
+$border-background: #d4d4d4;
+
+
 .Select select{
     background: transparent;
     width: 90%;
     border: none;
     margin-left: 10px;
-    border-bottom: 1px solid  #adadac
+    border-bottom: 1px solid  #adadac;
 }
 .Select select:focus{
     outline: none;;
 }    
+
 .last{
-    border-left: 0.5px solid #d4d4d4;
-    border-radius: 20% 0 0 20%;
+    border-left: 0.5px solid $border-background;
+    border-radius: 15px 0 0 15px;
 }

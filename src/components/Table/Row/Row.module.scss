@@ -1,11 +1,14 @@
+$border-background: #d4d4d4;
+$icon-color: violet;
+
 .Wrapper td{
-    border-top: 0.5px solid #d4d4d4;
-    border-bottom: 0.5px solid #d4d4d4;
+    border-top: 0.5px solid $border-background;
+    border-bottom: 0.5px solid $border-background;
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
 }
 .Wrapper:hover{   
-    background-color:#d4d4d4 ; 
+    background-color:$border-background; 
 }
 .Wrapper button{
     border: none;
@@ -13,23 +16,21 @@
 }
 .Wrapper .trash{
     background: transparent;
-    color: violet;
+    color: grey;
+    font-size: 15px;
 }
 .Wrapper .cross {
     background: transparent;
-    color: violet;
-    font-size: 10px;
-    padding: 5px;
-    border: 1px solid violet;
+    color: $icon-color;
+    font-size: 15px;
+    padding: 5px 8px 5px 8px;
+    border: 1px solid $icon-color;
     border-radius: 50%;
 }
-.Wrapper .trash:focus{
-    outline: none;
-}
-.Wrapper .cross:focus{
+.Wrapper button:focus{
     outline: none;
 }
 .Wrapper .last{
-    border-right: 0.5px solid #d4d4d4;
-    border-radius: 0 30% 30% 0;
+    border-right: 0.5px solid $border-background;
+    border-radius: 0 15px 15px 0;
 }
