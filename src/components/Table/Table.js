@@ -14,10 +14,7 @@ const Statereducer = (currentState,action)=>{
       const ab= currentState.findIndex((el)=>{
         return el.rowid===action.index
       });    
-
       abb.splice(ab,1) 
-
-      console.log(abb)
       return [...abb] ;
       }
       case 'SELECT':  
@@ -62,7 +59,6 @@ new: {
 
 const selectHandler =(event,index) => {
 const item = event.target.value;
-console.log(item)
 let selected = false;
 if(item !== 'Select an option'){
     selected=true;
@@ -105,7 +101,8 @@ return (
             </table>
             </div>
             <div className={classes.btn}>
-            <button onClick={addRowHandler} ><FontAwesomeIcon icon={faPlus}  className={classes.plus}/>
+            <button onClick={addRowHandler} ><FontAwesomeIcon icon={faPlus} 
+            className={classes.plus}/>
             <span className={classes.add}> Add item</span></button>
             </div>
             <div>
