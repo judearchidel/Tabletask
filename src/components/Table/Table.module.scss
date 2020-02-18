@@ -1,51 +1,58 @@
 $icon-color: violet;
 
-.Table table{
-    width: 90%;
-    border: none;
-    margin: 10px;
-    text-align: left;
-    border-spacing: 0 5px;
-    border-collapse: separate;
-    border-style: none;
-}
-.Table tr{
-    height: 30px;
-}
-.Table thead th{
-    font-weight: normal;
-}
-.Table .plus{
-    color : $icon-color;
-    padding: 2px;
-    border: 1px solid $icon-color;
-    border-radius: 50%;
-}
-
-.Table .tbl{
-    min-height: 200px;
-}
-.Table .add{
-    color: $icon-color;
-    padding: 2px;
-    font-size: 14px;
-}
-.Table .btn{
-    padding: 5px;
-    width: 90%;
-    text-align: left;
-    margin: 20px;
-    border-top: 0.5px solid black ;
-    border-bottom: 0.5px solid black;
-}
-.Table .btn button{
-    background-color: white;
-    border: none;
-}
-.Table .btn button:focus{
-    outline: none;
-}
-
+.Table 
+        {
+            .tbl{
+                min-height: 200px;
+                table{
+                    width: 90%;
+                    border: none;
+                    margin: 10px;
+                    text-align: left;
+                    border-spacing: 0 5px;
+                    border-collapse: separate;
+                    border-style: none;
+                    }
+                tr{
+                    height: 30px;
+                    }
+                thead 
+                        {
+                            th {
+                                font-weight: normal;
+                                }
+                            }
+                        }
+           
+            .btn{
+                padding: 5px;
+                width: 90%;
+                text-align: left;
+                margin: 20px;
+                border-top: 0.5px solid black ;
+                border-bottom: 0.5px solid black;
+                .plus{
+                        color : $icon-color;
+                        padding: 2px;
+                        border: 1px solid $icon-color;
+                        border-radius: 50%;
+                        }
+    
+                 
+                .add{
+                        color: $icon-color;
+                        padding: 2px;
+                        font-size: 14px;
+                        }
+                 button{
+                        background-color: white;
+                        border: none;
+                        &:focus{
+                                outline: none;
+                                    }
+                            }
+                        }
+                    }       
 
 
    

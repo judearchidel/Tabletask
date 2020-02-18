@@ -1,112 +1,131 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer} from 'react';
 import classes from './Table.module.scss';
 import Row from './Row/Row';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+
 const Statereducer = (currentState,action)=>{
     switch(action.type){
-      case 'ADD':
-      return [...currentState,action.new];
-      case 'DELETE':  
-      {
-      const abb = currentState;
-      const ab= currentState.findIndex((el)=>{
-        return el.rowid===action.index
-      });    
-      abb.splice(ab,1) 
-      return [...abb] ;
-      }
-      case 'SELECT':  
-      {
-      const abb = currentState;
-      const ab= currentState.findIndex((el)=>{
-        return el.rowid===action.index
-      });    
-      abb[ab].item= action.item;
-      abb[ab].selected= action.selected;  
-      return [...abb] ;
-      }
-      default:
-        throw new Error('Should not reach here')
-    }
-  }
+                        case 'ADD':
+                        return [...currentState,action.newRow];
+
+                        case 'DELETE':  
+                            {
+                                const index = currentState.findIndex((el)=>
+                                        {
+                                             return el.rowid===action.index
+                                         });    
+                                currentState.splice(index,1) 
+                                return [...currentState] ;
+                            }
+
+                        case 'SELECT':  
+                            {
+                                const index= currentState.findIndex((el)=>
+                                    {
+                                        return el.rowid===action.index
+                                     });    
+                                currentState[index].selectedItem= action.selectedItem;
+                                currentState[index].selected= action.selected;  
+                                return [...currentState] ;
+                            }
+
+                        default:
+                            throw new Error('Should not reach here')
+                    }
+        }
+
+
 
 const Table = (props)=>{
-
 const [State,setState] = useReducer(Statereducer,[]);
-const items = props.columnlist.map(el => {
-    return el.name
-} );
-const head = items.map((el,index)=>{
+
+const columitems = props.columnlist.map(el => 
+                {
+                     return el.name
+                });
+
+const columheading = columitems.map((el,index)=>{
     return (<th key={index}>{el}</th>)
 }); 
 
-let row = [];
-const rows =  props.columnlist.map(el => {
+
+const rowInputTypes =  props.columnlist.map(el => {
     return el.inputType
 } );
 
 
-const addRowHandler = useCallback(()=>{
-    setState({type:'ADD',
-new: {
-    rowid: new Date(),
-    item: '',
-    selected: false
-}})
-    },[])
+const addRowHandler = ()=>
+                    {
+                    setState({
+                        type:'ADD',
+                        newRow: {
+                                    rowid: new Date(),
+                                    selectedItem: '',
+                                    selected: false
+                                }
+                            })
+                     }
 
-const selectHandler =(item,index) => {
-let selected = false;
-if(item !== 'Select an option'){
-    selected=true;
-}
-setState({type:"SELECT",
-index: index,
-item: item,
-selected: selected
- })
-}
 
-const removeHandler =(index) => {
-setState({
-    type: 'DELETE',
-    index: index
-})
-}
-row = State.map((el,i)=>{
-        return (<Row key={el.rowid} index={el.rowid} itemlist={items} 
-            rowitems={rows}
-            item={el.item}
-            selected={el.selected}
-            selectHandler={selectHandler}
-            removeHandler={removeHandler}
-            ></Row>)
-})
+const selectHandler =(item,index) => 
+                    {
+                        let selected = false;
+                        if(item !== '')
+                            {
+                                selected=true;
+                            }
+                        setState(
+                            {
+                                type:"SELECT",
+                                index: index,
+                                selectedItem: item,
+                                selected: selected
+                            })
+                    }
 
-return (
-        <div className={classes.Table}>
+
+const removeRowHandler =(index) => {
+                        setState({
+                                    type: 'DELETE',
+                                    index: index
+                                })          
+                            }
+
+                            
+
+const row = State.map((el)=>{
+        return (<Row key={el.rowid} 
+                    rowid={el.rowid} 
+                    itemlist={columitems} 
+                    rowitems={rowInputTypes}
+                    selectedItem={el.selectedItem}
+                    selected={el.selected}
+                    selectHandler={selectHandler}
+                    removeRowHandler={removeRowHandler}>
+                </Row>)
+        })
+
+return ( <div className={classes.Table}>
             <div className={classes.tbl}>
-            <table>
-            <thead>
-                <tr>
-                    {head}
-                </tr>
-                </thead>
-                <tbody>
-                {row}
-                </tbody>
-            </table>
+                <table>
+                    <thead>
+                        <tr>
+                            {columheading}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {row}
+                    </tbody>
+                </table>
             </div>
             <div className={classes.btn}>
-            <button onClick={addRowHandler} ><FontAwesomeIcon icon={faPlus} 
-            className={classes.plus}/>
-            <span className={classes.add}> Add item</span></button>
+                <button onClick={addRowHandler}>
+                    <FontAwesomeIcon icon={faPlus} className={classes.plus}/>
+                    <span className={classes.add}> Add item</span>
+                </button>
             </div>
-            <div>
-            
-          </div>
         </div>
     );
 }

@@ -1,36 +1,38 @@
 $border-background: #d4d4d4;
 $icon-color: violet;
 
-.Wrapper td{
-    border-top: 0.5px solid $border-background;
-    border-bottom: 0.5px solid $border-background;
-    margin: 10px;
-    padding: 5px;
-}
-.Wrapper:hover{   
-    background-color:$border-background; 
-}
-.Wrapper button{
-    border: none;
-    background: transparent;
-}
-.Wrapper .trash{
-    background: transparent;
-    color: grey;
-    font-size: 15px;
-}
-.Wrapper .cross {
-    background: transparent;
-    color: $icon-color;
-    font-size: 15px;
-    padding: 5px 8px 5px 8px;
-    border: 1px solid $icon-color;
-    border-radius: 50%;
-}
-.Wrapper button:focus{
-    outline: none;
-}
-.Wrapper .last{
-    border-right: 0.5px solid $border-background;
-    border-radius: 0 15px 15px 0;
+.Wrapper {
+        &:hover{   
+            background-color:$border-background; 
+            }
+        td{
+            border-top: 0.5px solid $border-background;
+            border-bottom: 0.5px solid $border-background;
+            margin: 10px;
+            padding: 5px;
+        }
+         button{
+                border: none;
+                background: transparent;
+                &:focus{
+                    outline: none;
+                }
+            }
+         .trash{
+                background: transparent;
+                color: grey;
+                font-size: 15px;
+                }
+         .cross {
+                background: transparent;
+                color: $icon-color;
+                font-size: 15px;
+                padding: 5px 8px 5px 8px;
+                border: 1px solid $icon-color;
+                  border-radius: 50%;
+                }
+         .last{
+                border-right: 0.5px solid $border-background;
+                border-radius: 0 15px 15px 0;
+                }
 }

@@ -1,34 +1,38 @@
-.inp .Input{
-    background: transparent;
-    width: 90%;
-    border: none;
-    border-bottom: 1px solid  #adadac ;
-}
-.inp .Input:focus{ 
-    outline: none;
-    border-bottom: 1px solid #02add7;
-}
-.inp .NotValid{
-    background: transparent;
-    width: 90%;
-    border: none;
-    border-bottom: 1px solid red; 
-}
-.inp .NotValid:focus{ 
-    outline: none;
-    border-bottom: 1px solid red;
-}
-.inp .prefix{
-    text-decoration: none;
-    color: #adadac;
-}
-.inp .req{
-    padding: 0 30px 0 50px;
-      color: #999;
-      max-height: 0;
-      transition: 0.28s;
-      position: absolute;
-      z-index: 100;
-      color: red;
-      font-style: italic
+
+.inp {
+    @mixin input(){
+        background: transparent;
+        width: 90%;
+        border: none;
+    }
+    .Input{
+        @include input();
+        border-bottom: 1px solid  #adadac ;
+        &:focus{ 
+        outline: none;
+        border-bottom: 1px solid #02add7;
+        }
+    }
+    .NotValid{
+        @include input();
+        border-bottom: 1px solid red; 
+        &:focus{ 
+        outline: none;
+        border-bottom: 1px solid red;
+        }
+    }
+    .prefix{
+        text-decoration: none;
+        color: #adadac;
+    }
+    .req{
+        padding: 0 30px 0 50px;
+        color: #999;
+        max-height: 0;
+        transition: 0.28s;
+        position: absolute;
+        z-index: 100;
+        color: red;
+        font-style: italic
+    }
 }
