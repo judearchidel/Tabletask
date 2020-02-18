@@ -57,8 +57,7 @@ new: {
 }})
     },[])
 
-const selectHandler =(event,index) => {
-const item = event.target.value;
+const selectHandler =(item,index) => {
 let selected = false;
 if(item !== 'Select an option'){
     selected=true;

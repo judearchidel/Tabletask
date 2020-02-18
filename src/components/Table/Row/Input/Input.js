@@ -11,26 +11,21 @@ let ren= null;
 let  myref= React.createRef();
 let inputclasses=classes.Input;
 
-console.log("rendering");
-
 const checkValidity= (event)=>{    
-    const item = event.target.value;
-    console.log(item);
+ const item = event.target.value;
      setisvalid(item.trim() !== ''); 
    if(item < 0 || item >5000 ){
-    console.log('called');
        setisvalid(false);  
    }
 }
 if(!isvalid){
-    console.log("clled");
     inputclasses=classes.NotValid
 }
 if(props.inputType === "currency"){
             ren=<div><span className={classes.prefix}>$</span>
-            <input type="number" className={inputclasses} ref={myref} placeholder="0" onChange={(event)=>{checkValidity(event)}}></input>
+            <input type="number" className={inputclasses} ref={myref} placeholder="0"  onChange={(event)=>{checkValidity(event)}}></input>
             {!isvalid?<div className={classes.box}>
-            <p  className={classes.req}><FontAwesomeIcon icon={faSortUp} /> amount betweem 0 and 5000</p></div>:null}
+            <p  className={classes.req}><FontAwesomeIcon icon={faSortUp} /> Amount betwee $0 and $5000</p></div>:null}
             </div>
 }else {
         if(props.inputType === "text") {
