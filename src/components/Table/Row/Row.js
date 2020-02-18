@@ -20,6 +20,7 @@ const Row = (props) =>{
   if(props.selected){
     icon =<FontAwesomeIcon icon={faTrashAlt}  className={classes.trash}/>
   }
+
   return(
       <tr className={classes.Wrapper}>
         {inputs}

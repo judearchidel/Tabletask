@@ -76,7 +76,7 @@ setState({
 })
 }
 row = State.map((el,i)=>{
-        return (<Row key={i} index={el.rowid} itemlist={items} 
+        return (<Row key={el.rowid} index={el.rowid} itemlist={items} 
             rowitems={rows}
             item={el.item}
             selected={el.selected}
