@@ -19,24 +19,31 @@ $background:#adadac;
     .noContent{
         display: none;
     }
+    
     .dropContent{
         width: 100px;
         position: absolute;
         z-index: 19;
-        background-color: $background;
-        border: 1px solid black;
-        border-radius: 5px;
-        padding-inline-start: 5px;
+        background-color: white;
+        padding-inline-start: 0px;
         li{
             display: block;
+            padding:5px;
             font-size: 12px;
-            color: white;
+            color: black;
+            border: 1px solid $background ;
             &:hover{
-            background-color: #858383;
+            background-color: $background;
             cursor: pointer;
              }
-         }
-        }   
+             &:first-child{
+                 border-radius: 5px 5px 0 0;
+             }
+             &:last-child{
+                border-radius: 0 0 5px 5px;
+            }
+        }  
+    } 
     .arrow {
         padding-left: 2px;
         color: $background;
