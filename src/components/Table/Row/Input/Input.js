@@ -46,12 +46,17 @@ if(!isvalid)
 if(props.inputType === "currency"){
             renderInput=<div>
                     <span className={classes.prefix}>$</span>
-                    <input id='inp'
+                    {props.index===1?<input id='inp'
                             type="number" className={inputclasses} 
-                            ref={myref} placeholder="0"  
+                            ref={myref} placeholder="0.00"  
                             disabled={!props.selected} 
                             onInput={(event)=>{checkValidity(event)}}>
-                    </input>
+                    </input>:<input id='inp'
+                    type="number" className={inputclasses} 
+                    placeholder="0.00"  
+                    disabled={!props.selected} 
+                    onInput={(event)=>{checkValidity(event)}}>
+            </input>}
                     {!isvalid?<div>
                                  <p className={classes.req}>
                                  <FontAwesomeIcon icon={faSortUp} /> 
@@ -67,11 +72,11 @@ if(props.inputType === "currency"){
             }
 
 useEffect(()=>{ 
-                if(props.index===1 && props.selected) //to focus to first element
+                if(props.index===1 && props.selectedItem) //to focus to first element
                     {
                         myref.current.focus();
                     }
-                },[])
+                },[props.selectedItem])
 
 useEffect(()=>{
                 if(isvalid)

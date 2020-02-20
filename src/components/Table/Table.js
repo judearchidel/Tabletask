@@ -83,11 +83,10 @@ const addRowHandler = ()=>
 
 const selectHandler =(item,itemname,index) => 
                     {
-                        let selected = true;
-                        if(itemname==='item' && item !== '')
-                            {
-                                selected=true;
-                            }
+                    let selected = false  
+                    if(item !== true){
+                        selected = true
+                     }   
                         setState(
                             {
                                 type:"SELECT",

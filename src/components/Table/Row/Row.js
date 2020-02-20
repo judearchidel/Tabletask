@@ -22,7 +22,8 @@ const Row = (props) =>{
                                 {
                                     return <td key={props.rowid+index}><Input index={index}
                                                                   rowid={props.rowid} 
-                                                                  selected={props.selected} 
+                                                                  selected={props.selected}
+                                                                  selectedItem={props.selectedItem} 
                                                                   inputType={el.inputType}
                                                                   selectHandler={props.selectHandler}
                                                                   name={el.name}>
