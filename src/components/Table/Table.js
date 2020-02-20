@@ -1,4 +1,4 @@
-import React, { useReducer} from 'react';
+import React, { useReducer, useState} from 'react';
 import classes from './Table.module.scss';
 import Row from './Row/Row';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +26,7 @@ const Statereducer = (currentState,action)=>{
                                     {
                                         return el.rowid===action.index
                                      });    
-                                currentState[index].selectedItem= action.selectedItem;
+                                currentState[index].selectedItem[action.itemname]= action.selectedItem;
                                 currentState[index].selected= action.selected;  
                                 return [...currentState] ;
                             }
@@ -39,8 +39,14 @@ const Statereducer = (currentState,action)=>{
 
 
 const Table = (props)=>{
-const [State,setState] = useReducer(Statereducer,[]);
 
+const [State,setState] = useReducer(Statereducer,[]);
+const [selectedRow,setselectedRow] = useState(null);
+
+let rowDisplay= null;
+if(selectedRow !== null){
+rowDisplay= State[selectedRow].selectedItem;
+}
 const columitems = props.columnlist.map(el => 
                 {
                      return el.name
@@ -52,7 +58,8 @@ const columheading = columitems.map((el,index)=>{
 
 
 const rowInputTypes =  props.columnlist.map(el => {
-    return el.inputType
+    return { name: el.name,
+             inputType: el.inputType}
 } );
 
 
@@ -62,17 +69,22 @@ const addRowHandler = ()=>
                         type:'ADD',
                         newRow: {
                                     rowid: new Date(),
-                                    selectedItem: '',
+                                    selectedItem: {
+                                        Item: '',
+                                        MaterialFee: 0,
+                                        PackingFee: 0,
+                                        UnpackingFee: 0
+                                    },
                                     selected: false
                                 }
                             })
                      }
 
 
-const selectHandler =(item,index) => 
+const selectHandler =(item,itemname,index) => 
                     {
-                        let selected = false;
-                        if(item !== '')
+                        let selected = true;
+                        if(itemname==='item' && item !== '')
                             {
                                 selected=true;
                             }
@@ -80,10 +92,15 @@ const selectHandler =(item,index) =>
                             {
                                 type:"SELECT",
                                 index: index,
-                                selectedItem: item,
+                                itemname: itemname,
+                                selectedItem:item,
                                 selected: selected
                             })
+                        
                     }
+
+
+
 
 
 const removeRowHandler =(index) => {
@@ -93,6 +110,14 @@ const removeRowHandler =(index) => {
                                 })          
                             }
 
+const selectRow =(rowid)=>{
+    const index= State.findIndex((el)=>
+    {
+        return el.rowid===rowid
+     });   
+     setselectedRow(index)
+
+}
                             
 
 const row = State.map((el)=>{
@@ -100,10 +125,11 @@ const row = State.map((el)=>{
                     rowid={el.rowid} 
                     itemlist={columitems} 
                     rowitems={rowInputTypes}
-                    selectedItem={el.selectedItem}
+                    selectedItem={el.selectedItem.Item}
                     selected={el.selected}
                     selectHandler={selectHandler}
-                    removeRowHandler={removeRowHandler}>
+                    removeRowHandler={removeRowHandler}
+                    Click={selectRow}>
                 </Row>)
         })
 
@@ -126,6 +152,15 @@ return ( <div className={classes.Table}>
                     <span className={classes.add}> Add item</span>
                 </button>
             </div>
+
+            {rowDisplay?<div className={classes.Displayitem}>
+                    <div>
+                        <p>Selected item: {rowDisplay.Item}</p>
+                        <p>Material Fee: {rowDisplay.MaterialFee}</p>
+                        <p>Packing Fee: {rowDisplay.PackingFee}</p>
+                        <p>Unpacking Fee: {rowDisplay.UnpackingFee}</p>
+                    </div>
+            </div>: null}
         </div>
     );
 }

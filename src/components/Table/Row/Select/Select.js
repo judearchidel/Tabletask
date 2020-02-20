@@ -20,7 +20,7 @@ const Select =React.memo((props) =>{
 
     const selectHandler=((item,rowid)=>     //function to close the dropdown if a item is selected
                 {
-                    props.selectHandler(item,rowid)   //refered to function to change the item selected
+                    props.selectHandler(item,props.name,rowid)   //refered to function to change the item selected
                     if(dropdown){
                                 setdropdown(false);
                                  }

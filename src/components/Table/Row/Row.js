@@ -9,19 +9,23 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 const Row = (props) =>{
   let inputs = props.rowitems.map((el,index)=>
                             {
-                              if(el === "select")
+                              if(el.inputType === "select")
                                 {
                                     return  <Select key={index} 
                                                     rowid={props.rowid} 
                                                     selectedItem={props.selectedItem} 
                                                     itemlist={props.itemlist} 
-                                                    selectHandler={props.selectHandler}>
+                                                    selectHandler={props.selectHandler}
+                                                    name={el.name}>
                                             </Select>
                                 }else
                                 {
                                     return <td key={index}><Input index={index}
+                                                                  rowid={props.rowid} 
                                                                   selected={props.selected} 
-                                                                  inputType={el}>
+                                                                  inputType={el.inputType}
+                                                                  selectHandler={props.selectHandler}
+                                                                  name={el.name}>
                                                           </Input>
                                             </td>
                             }
@@ -34,7 +38,7 @@ const Row = (props) =>{
   
  
   
-  return(<tr className={classes.Wrapper}>
+  return(<tr className={classes.Wrapper} onClick={()=>props.Click(props.rowid)}>
               {inputs} 
                <td className={classes.last}>
                     <button onClick={()=>props.removeRowHandler(props.index)}>

@@ -4,27 +4,40 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSortUp } from "@fortawesome/free-solid-svg-icons";
 
 const Input =React.memo((props) =>{
+    
 const [isvalid,setisvalid]=useState(true);
+const [value,setValue] = useState(true);
 let renderInput = null;
 let  myref= React.createRef();   //ref for autofocus
 let inputclasses=classes.Input;
-
-const checkValidity=(event)=>{       //function to check validations of input
-        const item = event.target.value;
-            if(item < 0 || item >5000 )
-                {
-                 if(isvalid)
-                    {
-                    setisvalid(false); 
-                    } 
-                }
-            else{
-                if(!isvalid)
-                    {
-                    setisvalid(true);
-                    }
-                }
+let name ='';
+if(props.name==="Material Fee")
+        {
+            name="MaterialFee"
+        }else if(props.name==="Packing Fee")
+        {
+            name="PackingFee"
+        }else if(props.name==="Unpacking Fee")
+        {
+            name="UnpackingFee"
         }
+
+const checkValidity= (event)=>{   
+    //function to check validations of input
+    setValue(event.target.value)
+    const  item=event.target.value
+    if(item < 0 || item >5000 )
+    { if(isvalid)
+        {
+            setisvalid(false); 
+        } 
+    }else{
+    if(!isvalid)
+        {
+            setisvalid(true);
+        }
+}
+}
 
 if(!isvalid)
         {
@@ -33,11 +46,11 @@ if(!isvalid)
 if(props.inputType === "currency"){
             renderInput=<div>
                     <span className={classes.prefix}>$</span>
-                    <input 
+                    <input id='inp'
                             type="number" className={inputclasses} 
                             ref={myref} placeholder="0"  
                             disabled={!props.selected} 
-                            onChange={(event)=>{checkValidity(event)}}>
+                            onInput={(event)=>{checkValidity(event)}}>
                     </input>
                     {!isvalid?<div>
                                  <p className={classes.req}>
@@ -46,7 +59,7 @@ if(props.inputType === "currency"){
                             </div>:null}
                  </div>
 }else if(props.inputType === "text") {
-             renderInput = <input
+             renderInput = <input id='inp'
                             className={inputclasses}
                             placeholder = "text" 
                             disabled={!props.selected}>
@@ -58,7 +71,14 @@ useEffect(()=>{
                     {
                         myref.current.focus();
                     }
-        })
+                },[])
+
+useEffect(()=>{
+                if(isvalid)
+                {props.selectHandler(value,name,props.rowid)}
+            },[value,name,isvalid]);
+    
+
 
 return(
      <div className={classes.inp}>

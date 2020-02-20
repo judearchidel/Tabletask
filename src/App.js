@@ -15,7 +15,7 @@ function App() {
     },
     {
       name: 'Packing Fee',
-      inputType: 'text'
+      inputType: 'currency'
     },
     {
       name: 'Unpacking Fee',
