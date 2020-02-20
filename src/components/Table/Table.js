@@ -44,9 +44,9 @@ const [State,setState] = useReducer(Statereducer,[]);
 const [selectedRow,setselectedRow] = useState(null);
 
 let rowDisplay= null;
-if(selectedRow !== null){
-rowDisplay= State[selectedRow].selectedItem;
-}
+if(selectedRow !== null && (State.length >= 1)){
+                     rowDisplay= State[selectedRow].selectedItem;
+                    }
 const columitems = props.columnlist.map(el => 
                 {
                      return el.name

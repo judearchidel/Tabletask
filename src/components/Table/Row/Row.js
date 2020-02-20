@@ -11,7 +11,7 @@ const Row = (props) =>{
                             {
                               if(el.inputType === "select")
                                 {
-                                    return  <Select key={index} 
+                                    return  <Select key={props.rowid+index} 
                                                     rowid={props.rowid} 
                                                     selectedItem={props.selectedItem} 
                                                     itemlist={props.itemlist} 
@@ -20,7 +20,7 @@ const Row = (props) =>{
                                             </Select>
                                 }else
                                 {
-                                    return <td key={index}><Input index={index}
+                                    return <td key={props.rowid+index}><Input index={index}
                                                                   rowid={props.rowid} 
                                                                   selected={props.selected} 
                                                                   inputType={el.inputType}
@@ -41,7 +41,7 @@ const Row = (props) =>{
   return(<tr className={classes.Wrapper} onClick={()=>props.Click(props.rowid)}>
               {inputs} 
                <td className={classes.last}>
-                    <button onClick={()=>props.removeRowHandler(props.index)}>
+                    <button onClick={()=>props.removeRowHandler(props.rowid)}>
                     {icon}
                     </button>
               </td>
